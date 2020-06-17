@@ -44,5 +44,43 @@ namespace ConstructionLine.CodingChallenge.Tests
             AssertSizeCounts(_shirts, options, results.SizeCounts);
             AssertColorCounts(_shirts, options, results.ColorCounts);
         }
+        [Test]
+        public void PerformanceTestSrchEngine_MethodCalled_ReturnDataForMultiBothOptionAsExpected()
+        {
+            var sw = new Stopwatch();
+            sw.Start();
+
+            var options = new SearchOptions
+            {
+                Colors = new List<Color> { Color.Red, Color.Yellow},
+                Sizes = new List<Size> {  Size.Large, Size.Medium}
+            };
+
+            var results = _searchEngine.Search(options);
+
+            sw.Stop();
+            Console.WriteLine($"Test fixture finished in {sw.ElapsedMilliseconds} milliseconds");
+
+            AssertResults(results.Shirts, options);
+            AssertSizeCounts(_shirts, options, results.SizeCounts);
+            AssertColorCounts(_shirts, options, results.ColorCounts);
+        }
+        [Test]
+        public void PerformanceTestSrchEngine_MethodCalled_ReturnDataAllAsExpected()
+        {
+            var sw = new Stopwatch();
+            sw.Start();
+
+            var options = new SearchOptions();
+
+            var results = _searchEngine.Search(options);
+
+            sw.Stop();
+            Console.WriteLine($"Test fixture finished in {sw.ElapsedMilliseconds} milliseconds");
+
+            AssertResults(results.Shirts, options);
+            AssertSizeCounts(_shirts, options, results.SizeCounts);
+            AssertColorCounts(_shirts, options, results.ColorCounts);
+        }
     }
 }

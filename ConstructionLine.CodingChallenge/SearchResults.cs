@@ -28,4 +28,12 @@ namespace ConstructionLine.CodingChallenge
 
         public int Count { get; set; }
     }
+
+    public class SizeColorCount
+    {
+        public Size Size { get; set; }
+        public Color Color { get; set; }
+
+        public int Count { get; set; }
+    }
 }
